@@ -1,7 +1,9 @@
 package com.kbstar.service;
 
 import com.kbstar.dto.Adm;
+import com.kbstar.dto.Adm;
 import com.kbstar.frame.KBService;
+import com.kbstar.mapper.AdmMapper;
 import com.kbstar.mapper.AdmMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,12 +12,20 @@ import java.util.List;
 
 @Service
 public class AdmService implements KBService<String, Adm> {
+
     @Autowired
     AdmMapper mapper;
 
+    /**
+     * 등록 및 가입 진행
+     * argument: Object
+     * return: null
+     *
+     * @param Adm
+     */
     @Override
-    public void register(Adm adm) throws Exception {
-        mapper.insert(adm);
+    public void register(Adm Adm) throws Exception {
+        mapper.insert(Adm);
     }
 
     @Override
@@ -24,8 +34,8 @@ public class AdmService implements KBService<String, Adm> {
     }
 
     @Override
-    public void modify(Adm adm) throws Exception {
-        mapper.update(adm);
+    public void modify(Adm Adm) throws Exception {
+        mapper.update(Adm);
     }
 
     @Override
@@ -35,19 +45,6 @@ public class AdmService implements KBService<String, Adm> {
 
     @Override
     public List<Adm> getall() throws Exception {
-        return null;
-    }
-
-
-    public List<Adm> get() throws Exception {
         return mapper.selectall();
     }
 }
-
-/**
- * 등록 및 가입 진행
- * argument: Object
- * return: null
- *
- * @param adm
- */

@@ -3,7 +3,6 @@ package com.kbstar.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.kbstar.dto.Cust;
-import com.kbstar.dto.Item;
 import com.kbstar.frame.KBService;
 import com.kbstar.mapper.CustMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -18,15 +17,18 @@ public class CustService implements KBService<String, Cust> {
 
     @Autowired
     CustMapper mapper;
+
+    @Transactional
     @Override
     public void register(Cust cust) throws Exception {
         mapper.insert(cust);
-        log.info("Send Mail .........."+cust.getId());
+        log.info("Send Mail................" + cust.getId());
     }
 
     @Override
     public void remove(String s) throws Exception {
         mapper.delete(s);
+        log.info("Send Mail................");
     }
 
     @Override
@@ -43,11 +45,8 @@ public class CustService implements KBService<String, Cust> {
     public List<Cust> getall() throws Exception {
         return mapper.selectall();
     }
-
-
     public Page<Cust> getPage(int pageNo) throws Exception {
         PageHelper.startPage(pageNo, 3); // 3: 한화면에 출력되는 개수
         return mapper.getpage();
     }
-
 }

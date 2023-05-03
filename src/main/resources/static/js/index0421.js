@@ -1,28 +1,35 @@
-
-let login_form = {
-    init:function(){
-        $('#login_btn').click(function(){
-            login_form.send();
+let rgs_form = {
+    init:() => {
+        $("#rgs_btn").click( () => {
+            rgs_form.send();
         });
     },
-    send:function(){
-        $('#login_form').attr({
-            'action':'/loginimpl',
-            'method':'post'
+    send:() => {
+        $("#rgs_form").attr({
+            'action':'/rgsimpl',
+            'method':'get'
         });
-        $('#login_form').submit();
+        $("#rgs_form").submit();
     }
 };
 
+$( () => {
+    rgs_form.init();
+});
 
 
 let jsp01 = {
     data:0,
-    init:function(num){
+    init:(num) => {
         this.data = num;
-        this.display();
+        // this.data = `<c:out value="${num}"/>`;
+        jsp01.display();
     },
-    display:function(){
-        $('#jsp01').text(this.data+'');
+    display:() => {
+        $('#jsp01').text(this.data + ``);
     }
 };
+
+$(() => {
+    jsp01.init(num);
+});

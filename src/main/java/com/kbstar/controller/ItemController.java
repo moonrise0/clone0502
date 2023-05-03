@@ -20,51 +20,55 @@ import java.util.List;
 @Controller
 @RequestMapping("/item")
 public class ItemController {
+
     @Autowired
     ItemService itemService;
 
+    //    Logger logger = LoggerFactory.getLogger(this.getClass().getSimpleName());
     String dir = "item/";
-    // 127.0.0.1/cust
+
+    // 127.0.0.1/item
     @RequestMapping("")
-    public String main(Model model){
-        model.addAttribute("left",dir+"left");
-        model.addAttribute("center",dir+"center");
+    public String main(Model model) {
+        model.addAttribute("left", dir +"left");
+        model.addAttribute("center", dir +"center");
         return "index";
     }
     @RequestMapping("/add")
-    public String add(Model model){
-        model.addAttribute("left",dir+"left");
-        model.addAttribute("center",dir+"add");
+    public String add(Model model) {
+        model.addAttribute("left", dir +"left");
+        model.addAttribute("center", dir +"add");
         return "index";
     }
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
-        List<Item> list = new ArrayList<>();
+        List<Item> list;
+
         try {
-            list = itemService.get();
+            list=itemService.getall();
         } catch (Exception e) {
-            throw new Exception("시스템 장애:ER0002");
+            throw new Exception("시스템 장애 ER00002");
         }
-        model.addAttribute("allitem",list);
-        model.addAttribute("left",dir+"left");
-        model.addAttribute("center",dir+"all");
+
+        model.addAttribute("allitem", list);
+        model.addAttribute("left", dir +"left");
+        model.addAttribute("center", dir +"all");
         return "index";
     }
-
     @RequestMapping("/allpage")
-    public String allpage(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model)throws Exception {
+    public String allpage(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception {
         PageInfo<Item> p;
         try {
-            p = new PageInfo<>(itemService.getPage(pageNo), 5); // 5:하단 네비게이션 개수
+            p = new PageInfo<>(itemService.getPage(pageNo), 5);
         } catch (Exception e) {
-            throw new Exception("시스템 장애:ER0002");
+            throw new Exception("시스템 장애 ER00002");
         }
-        model.addAttribute("target", "item");
+
         model.addAttribute("cpage", p);
-        model.addAttribute("left",dir+"left");
-        model.addAttribute("center",dir+"allpage");
+        model.addAttribute("tatger", "item");
+        model.addAttribute("left", dir +"left");
+        model.addAttribute("center", dir +"allpage");
         return "index";
     }
-
 
 }

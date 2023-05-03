@@ -18,7 +18,7 @@ class UpdateTest {
     void contextLoads() {
         try {
             service.modify(new Adm("id05", "pwd55", 2));
-            service.get();
+            service.getall();
         } catch (Exception e) {
             log.info("오류");
         }

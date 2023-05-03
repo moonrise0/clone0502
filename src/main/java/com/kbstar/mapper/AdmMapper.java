@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface AdmMapper extends KBMapper<String, Adm> {
+
 }

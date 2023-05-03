@@ -44,11 +44,11 @@ public class AjaxImplController {
     public Object getdata() {
 
         List<Cust> list = new ArrayList<>();
-        list.add(new Cust("id01", "pwd02 ","james1"));
-        list.add(new Cust("id02", "pwd02 ","james2"));
-        list.add(new Cust("id03","pwd02 ", "james3"));
-        list.add(new Cust("id04","pwd02 ", "james4"));
-        list.add(new Cust("id05","pwd02 ", "james5"));
+        list.add(new Cust("id01", "pwd01", "james1"));
+        list.add(new Cust("id02", "pwd02", "james2"));
+        list.add(new Cust("id03", "pwd03", "james3"));
+        list.add(new Cust("id04", "pwd04", "james4"));
+        list.add(new Cust("id05", "pwd05", "james5"));
 
         JSONArray ja = new JSONArray();
         JSONObject jo = new JSONObject();
@@ -57,7 +57,7 @@ public class AjaxImplController {
             Random r = new Random();
             int i = r.nextInt(100)+1;
             jo.put("id",obj.getId());
-//            jo.put("pwd",obj.getPwd());
+            jo.put("pwd",obj.getPwd());
             jo.put("name",obj.getName()+i);
             ja.add(jo);
         }
